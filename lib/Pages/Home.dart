@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:groceries/Assets/Colorthemes.dart';
 import 'package:groceries/Modals/Orderlist.dart';
 import 'package:groceries/Pages/Scan/ScanEnter.dart';
+import 'package:groceries/Pages/ShopList.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -182,6 +183,14 @@ class _HomePageState extends State<HomePage> {
               context,
               MaterialPageRoute(
                 builder: (_) => ScanEnter()
+              ),
+            );
+          }
+          if (i==3){
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => ShopList()
               ),
             );
           }
