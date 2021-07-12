@@ -1,12 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:groceries/Assets/Colorthemes.dart';
+import 'package:groceries/Assets/Themes/Colorthemes.dart';
 import 'package:groceries/Modals/Orderlist.dart';
 import 'package:groceries/Pages/Scan/ScanEnter.dart';
-import 'package:groceries/Pages/ShopList.dart';
+import 'package:groceries/Pages/List/ShopList.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -33,7 +34,6 @@ class _HomePageState extends State<HomePage> {
         child: Container(
             padding: EdgeInsets.all(10),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
                   padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
@@ -194,6 +194,7 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           }
+         
         },
       ),
     );
@@ -263,3 +264,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+

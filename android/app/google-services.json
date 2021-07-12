@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "167336645322",
+    "project_id": "groceries-dexagon",
+    "storage_bucket": "groceries-dexagon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167336645322:android:a18a82dda7fc570f1a9a33",
+        "android_client_info": {
+          "package_name": "com.dexagon.groceries"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "167336645322-bvhcn0p5bld07fuipgi1fdchtgf0t5ck.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6AHs2M4v4OEgjdNR9pVRw6raVZN2kD4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "167336645322-bvhcn0p5bld07fuipgi1fdchtgf0t5ck.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

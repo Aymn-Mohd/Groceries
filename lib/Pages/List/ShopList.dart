@@ -1,9 +1,9 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:groceries/Assets/Colorthemes.dart';
+import 'package:groceries/Assets/Themes/Colorthemes.dart';
 import 'package:groceries/Pages/Home.dart';
 
-import 'Scan/ScanEnter.dart';
+import '../Scan/ScanEnter.dart';
 
 class ShopList extends StatefulWidget {
   const ShopList({Key? key}) : super(key: key);
@@ -16,6 +16,9 @@ class _ShopListState extends State<ShopList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      body: SafeArea(child: Container(),),
+
 
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.playlist_add),
