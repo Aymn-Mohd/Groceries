@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
           return MaterialApp(
-            home: SignUp(),
+            home: HomePage(),
           );
         }
 
