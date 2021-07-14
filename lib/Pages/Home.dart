@@ -109,14 +109,14 @@ class _HomePageState extends State<HomePage> {
                               style: GoogleFonts.montserrat(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w500,
-                                  color: whitecolor),
+                                  color: white),
                               softWrap: true,
                             ),
                           ]),
                           Column(children: [
                             Icon(
                               Icons.arrow_forward,
-                              color: whitecolor,
+                              color: white,
                               size: 30,
                             )
                           ]),

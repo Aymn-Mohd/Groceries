@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groceries/Assets/Themes/Colorthemes.dart';
 import 'package:groceries/Pages/Home.dart';
+import 'package:groceries/Pages/Scan/Scanfinal.dart';
 import 'package:scan/scan.dart';
 
 class ScanEnter extends StatefulWidget {
@@ -39,12 +40,13 @@ class _ScanEnterState extends State<ScanEnter> {
         child: ScanView(
             controller: scancontroller,
             scanAreaScale: .7,
-            scanLineColor: Colors.green.shade400,
+            scanLineColor: Colors.red,
             onCapture: (data) {
               print(qrcode);
               setState(() {
                 qrcode = data;
               });
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => ScanFinal()));
               print(qrcode);
             }),
       ),
