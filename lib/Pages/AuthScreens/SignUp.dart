@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:groceries/Assets/Themes/Colorthemes.dart';
 import 'package:groceries/Assets/Themes/Fonts.dart';
+import 'package:groceries/Services/AuthServ/Auth.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -14,12 +15,13 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   String email = '';
-  String password = '';
+  String pass = '';
   String namef = '';
   String namel = '';
   @override
   Widget build(BuildContext context) {
     final firstname = TextField(
+
       style: style20,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -36,6 +38,11 @@ class _SignUpState extends State<SignUp> {
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
     final emailField = TextField(
+      onChanged: (val){
+        setState(() {
+          email = val;
+        });
+      },
       style: style20,
       decoration: InputDecoration(
           contentPadding:EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -45,6 +52,11 @@ class _SignUpState extends State<SignUp> {
     );
 
     final passwordField = TextField(
+      onChanged: (val){
+        setState(() {
+          pass = val;
+        });
+      },
       obscureText: true,
       style: style20,
       decoration: InputDecoration(
@@ -61,7 +73,9 @@ class _SignUpState extends State<SignUp> {
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {},
+        onPressed: () {
+          authserv(email: email,pass: pass).registerep(email,pass);
+        },
         child: Text("Sign Up",
             textAlign: TextAlign.center,
             style: style20.copyWith(

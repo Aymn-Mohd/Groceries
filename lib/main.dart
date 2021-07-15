@@ -3,9 +3,13 @@ import 'package:groceries/Pages/AuthScreens/Login.dart';
 import 'package:groceries/Pages/AuthScreens/SignUp.dart';
 import 'package:groceries/Pages/Home.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:groceries/Services/AuthServ/Streamauth.dart';
+import 'package:groceries/Services/AuthServ/gAuth.dart';
+import 'package:provider/provider.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -14,29 +18,10 @@ class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      // Initialize FlutterFire:
-      future: _initialization,
-      builder: (context, snapshot) {
-        // Check for errors
-        if (snapshot.hasError) {
-          return Container(
-            color: Colors.red,
-          );
-        }
+    return ChangeNotifierProvider(
+    create: (context) => GSignIn(),
 
-        // Once complete, show your application
-        if (snapshot.connectionState == ConnectionState.done) {
-          return MaterialApp(
-            home: HomePage(),
-          );
-        }
-
-        // Otherwise, show something whilst waiting for initialization to complete
-        return Container(
-          color: Colors.yellow,
-        );
-      },
+      child: MaterialApp(home: Sauth(),)
     );
   }
 }

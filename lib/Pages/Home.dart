@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -10,6 +11,9 @@ import 'package:groceries/Assets/Themes/Fonts.dart';
 import 'package:groceries/Modals/Orderlist.dart';
 import 'package:groceries/Pages/Scan/ScanEnter.dart';
 import 'package:groceries/Pages/List/ShopList.dart';
+import 'package:groceries/Services/AuthServ/Auth.dart';
+import 'package:groceries/Services/AuthServ/gAuth.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -32,6 +36,9 @@ class _HomePageState extends State<HomePage> {
   ];
   @override
   Widget build(BuildContext context) {
+    Future logout() async {
+      await FirebaseAuth.instance.signOut();
+    }
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -186,7 +193,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 SizedBox(
                   height: 20,
-                )
+                ),
               ],
             )),
       ),
@@ -217,6 +224,12 @@ class _HomePageState extends State<HomePage> {
                 builder: (_) => ScanEnter()
               ),
             );
+          }
+          if (i==4){
+            final provider = Provider.of<GSignIn>(context,listen: false);
+            provider.logout();
+            logout();
+
           }
           if (i==3){
             Navigator.pushReplacement(
