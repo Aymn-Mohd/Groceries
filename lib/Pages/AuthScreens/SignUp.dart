@@ -74,7 +74,7 @@ class _SignUpState extends State<SignUp> {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () {
-          authserv(email: email,pass: pass).registerep(email,pass);
+          authserv().registerep(email,pass);
         },
         child: Text("Sign Up",
             textAlign: TextAlign.center,

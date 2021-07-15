@@ -23,7 +23,7 @@ class GSignIn extends ChangeNotifier {
     notifyListeners();
   }
   Future logout() async{
-    await googleSignIn.disconnect()!;
+    await googleSignIn.disconnect();
     FirebaseAuth.instance.signOut();
   }
 }

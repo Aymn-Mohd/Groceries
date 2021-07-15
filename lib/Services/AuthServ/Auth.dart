@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class authserv {
-  final String email;
-  final String pass;
-authserv({required this.email, required this.pass});
 
   Future signinep(email,pass) async{
 
@@ -38,5 +35,6 @@ authserv({required this.email, required this.pass});
       print(e);
     }
   }
+
 
 }

@@ -58,7 +58,7 @@ class _LoginState extends State<Login> {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () {
-          authserv(email: email,pass: pass).signinep(email,pass);
+          authserv().signinep(email,pass);
         },
         child: Text("Login",
             textAlign: TextAlign.center,
@@ -126,6 +126,18 @@ class _LoginState extends State<Login> {
                         emailField,
                         SizedBox(height: 25.0),
                         passwordField,
+                        SizedBox(height: 7.0),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            TextButton(
+                              onPressed: (){},
+                              child: Text(
+                                  'Forgot Password',
+                                  style: TextStyle(color: Colors.grey),
+                            ))
+                          ],
+                        ),
                         SizedBox(
                           height: 35.0,
                         ),
