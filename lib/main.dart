@@ -3,8 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:groceries/Services/AuthServ/Streamauth.dart';
 import 'package:groceries/Services/AuthServ/gAuth.dart';
 import 'package:provider/provider.dart';
+import 'Models/Cart.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
@@ -12,13 +13,15 @@ void main() async{
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-  
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-    create: (context) => GSignIn(),
-
-      child: MaterialApp(home: Sauth(),)
-    );
+        create: (context) => GSignIn(),
+        child: MultiProvider(
+          providers: [ ChangeNotifierProvider.value(value: Cart())],
+            child: MaterialApp(
+          home: Sauth(),
+        )));
   }
 }

@@ -46,7 +46,7 @@ class _ScanEnterState extends State<ScanEnter> {
               setState(() {
                 qrcode = data;
               });
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => ScanFinal()));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => ScanFinal(qrcode: qrcode,)));
               print(qrcode);
             }),
       ),

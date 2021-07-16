@@ -8,7 +8,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:groceries/Assets/Themes/Colorthemes.dart';
 import 'package:groceries/Assets/Themes/Fonts.dart';
-import 'package:groceries/Modals/Orderlist.dart';
+
+import 'package:groceries/Models/Orderlist.dart';
 import 'package:groceries/Pages/Scan/ScanEnter.dart';
 import 'package:groceries/Pages/List/ShopList.dart';
 import 'package:groceries/Services/AuthServ/Auth.dart';
