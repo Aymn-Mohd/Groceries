@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:groceries/Pages/AuthScreens/Login.dart';
+import 'package:groceries/Pages/AuthScreens/AuthMain.dart';
 import 'package:groceries/Pages/Home.dart';
 
 class Sauth extends StatelessWidget {
@@ -18,7 +17,7 @@ class Sauth extends StatelessWidget {
       else if (snapshot.hasData){
         return HomePage();
       }
-      return Login();
+      return AuthMain();
     });
   }
 }

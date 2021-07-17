@@ -33,7 +33,13 @@ class _ScanEnterState extends State<ScanEnter> {
           ),
         ),
         actions: [
-          IconButton(onPressed: (){scancontroller.toggleTorchMode();}, icon:Icon(Icons.flash_on,))
+          IconButton(
+              onPressed: () {
+                scancontroller.toggleTorchMode();
+              },
+              icon: Icon(
+                Icons.flash_on,
+              ))
         ],
       ),
       body: Container(
@@ -46,7 +52,12 @@ class _ScanEnterState extends State<ScanEnter> {
               setState(() {
                 qrcode = data;
               });
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => ScanFinal(qrcode: qrcode,)));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => ScanFinal(
+                            qrcode: qrcode,
+                          )));
               print(qrcode);
             }),
       ),

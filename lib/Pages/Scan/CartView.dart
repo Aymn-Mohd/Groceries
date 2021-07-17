@@ -24,17 +24,17 @@ class Cartview extends StatelessWidget {
       body: Container(
         padding: EdgeInsets.all(8),
         child: ListView.separated(
-          separatorBuilder: (context, index) => const SizedBox(
-            height: 8,
-          ),
-          itemCount: cart.items.length,
+            separatorBuilder: (context, index) => const SizedBox(
+                  height: 8,
+                ),
+            itemCount: cart.items.length,
             itemBuilder: (context, index) {
-          return CartCard(
-              cart.items.values.toList()[index].barcode,
-              cart.items.values.toList()[index].name,
-              cart.items.values.toList()[index].price,
-              cart.items.values.toList()[index].quantity);
-        }),
+              return CartCard(
+                  cart.items.values.toList()[index].barcode,
+                  cart.items.values.toList()[index].name,
+                  cart.items.values.toList()[index].price,
+                  cart.items.values.toList()[index].quantity);
+            }),
       ),
     );
   }

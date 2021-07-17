@@ -13,16 +13,20 @@ class Cart with ChangeNotifier {
   Map<String, productinfo> get items {
     return {..._items};
   }
+
   int get itemCount {
     return _items.length;
   }
 
-
-  void addItem(String barcode, String name, double price,) {
+  void addItem(
+    String barcode,
+    String name,
+    double price,
+  ) {
     if (_items.containsKey(barcode)) {
       _items.update(
           barcode,
-              (existitm) => productinfo(existitm.barcode, existitm.name,
+          (existitm) => productinfo(existitm.barcode, existitm.name,
               existitm.price, existitm.quantity + 1));
     } else {
       _items.putIfAbsent(barcode, () => productinfo(barcode, name, price, 1));
@@ -31,17 +35,19 @@ class Cart with ChangeNotifier {
   }
 
   void removeitem(
-      String barcode,
-      ) {
+    String barcode,
+  ) {
     _items.remove(barcode);
   }
 
-  void removesingitem(String barcode, ) {
+  void removesingitem(
+    String barcode,
+  ) {
     if (_items[barcode]!.quantity > 1) {
       _items.update(
           barcode,
-              (existitm) => productinfo(barcode, existitm.name, existitm.price,
-              existitm.quantity - 1));
+          (existitm) => productinfo(
+              barcode, existitm.name, existitm.price, existitm.quantity - 1));
     }
     notifyListeners();
   }

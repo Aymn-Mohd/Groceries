@@ -1,20 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:groceries/Assets/Themes/Colorthemes.dart';
 import 'package:groceries/Assets/Themes/Fonts.dart';
-
 import 'package:groceries/Models/Orderlist.dart';
 import 'package:groceries/Pages/Scan/ScanEnter.dart';
-import 'package:groceries/Pages/List/ShopList.dart';
-import 'package:groceries/Services/AuthServ/Auth.dart';
-import 'package:groceries/Services/AuthServ/gAuth.dart';
-import 'package:provider/provider.dart';
+import 'package:groceries/Widgets/Ordercard.dart';
+import 'Account.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,7 +19,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
+  String name = '';
+  String email = '';
   List<Orderlist> Orders = [
     Orderlist('Lulu', '20.2.21', 60),
     Orderlist('Lulu', '20.1.21', 50),
@@ -35,11 +31,13 @@ class _HomePageState extends State<HomePage> {
     Orderlist('Max', '20.3.21', 50),
     Orderlist('Carrefour', '18.2.21', 50)
   ];
+
   @override
   Widget build(BuildContext context) {
     Future logout() async {
       await FirebaseAuth.instance.signOut();
     }
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -89,8 +87,9 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 MaterialButton(
-                  onPressed: (){
-                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => ScanEnter()));
+                  onPressed: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) => ScanEnter()));
                   },
                   child: Container(
                     height: 50,
@@ -154,8 +153,11 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         TextButton(
-                          onPressed: (){},
-                          child: Text('See More',style: style17b,),
+                          onPressed: () {},
+                          child: Text(
+                            'See More',
+                            style: style17b,
+                          ),
                         ),
                       ],
                     )
@@ -183,12 +185,15 @@ class _HomePageState extends State<HomePage> {
                             ),
                         itemCount: Orders.length,
                         itemBuilder: (context, index) {
-                         if(Orders.length<0){
-                           return Text('You have made no Orders',style: TextStyle(fontSize: 15,color: Colors.black),);
-                         }
-                         else{
-                           return ordercard(context, index);
-                         }
+                          if (Orders.length < 0) {
+                            return Text(
+                              'You have made no Orders',
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.black),
+                            );
+                          } else {
+                            return ordercard(context, index);
+                          }
                         }),
                   ),
                 ),
@@ -213,101 +218,28 @@ class _HomePageState extends State<HomePage> {
             color: Colors.black,
             size: 35,
           )),
-          TabItem(icon: Icons.list_alt, title: 'List'),
           TabItem(icon: Icons.person_outline_rounded, title: 'Account'),
+          TabItem(icon: Icons.logout, title: 'Logout'),
         ],
         onTap: (int i) {
           print(i);
-          if (i==2){
+          if (i == 2) {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(
-                builder: (_) => ScanEnter()
-              ),
+              MaterialPageRoute(builder: (_) => ScanEnter()),
             );
           }
-          if (i==4){
-            final provider = Provider.of<GSignIn>(context,listen: false);
-            provider.logout();
+          if (i == 3) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (_) => Account()),
+            );
+          }
+          if (i == 4) {
             logout();
-
           }
-          if (i==3){
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (_) => ShopList()
-              ),
-            );
-          }
-         
         },
       ),
     );
   }
-
-  Widget ordercard(context, index) {
-    return Container(
-      padding: EdgeInsets.all(7),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.0),
-        color: const Color(0xffffffff),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0x29000000),
-            offset: Offset(0, 3),
-            blurRadius: 6,
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            children: [
-              Text(
-                Orders[index].Storename,
-                style: GoogleFonts.montserrat(
-                    fontSize: 36, fontWeight: FontWeight.w500),
-                softWrap: true,
-              ),
-              Row(
-                children: [
-                  Text(
-                    Orders[index].Date,
-                    style: GoogleFonts.montserrat(
-                        fontSize: 12, fontWeight: FontWeight.w500),
-                    softWrap: true,
-                  )
-                ],
-              )
-            ],
-          ),
-          Column(
-            children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: Text(
-                  Orders[index].price.toString(),
-                  style: GoogleFonts.montserrat(
-                      fontSize: 25, fontWeight: FontWeight.w500),
-                  softWrap: true,
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: IconButton(
-                  onPressed: () {
-                    print('itworks');
-                  },
-                  icon: Icon(Icons.more_vert_rounded),
-                ),
-              )
-            ],
-          )
-        ],
-      ),
-    );
-  }
 }
-

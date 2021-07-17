@@ -1,5 +1,6 @@
 import 'package:bottom_drawer/bottom_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:groceries/Assets/Themes/Colorthemes.dart';
 import 'package:groceries/Assets/Themes/Fonts.dart';
@@ -33,7 +34,7 @@ class _ScanFinalState extends State<ScanFinal> {
     final cart = Provider.of<Cart>(context);
 
     final CollectionReference<void> products =
-    FirebaseFirestore.instance.collection(qrcode);
+        FirebaseFirestore.instance.collection(qrcode);
 
     queryproduct() async {
       return await products
@@ -52,6 +53,7 @@ class _ScanFinalState extends State<ScanFinal> {
         });
       });
     }
+
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -94,15 +96,11 @@ class _ScanFinalState extends State<ScanFinal> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      scancontroller.toggleTorchMode();
+                    },
                     icon: Icon(
-                      Icons.dialpad,
-                      color: white,
-                    )),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.list_alt_outlined,
+                      Icons.flash_on,
                       color: white,
                     )),
                 MaterialButton(
@@ -115,14 +113,6 @@ class _ScanFinalState extends State<ScanFinal> {
                     style: style20,
                   ),
                 ),
-                IconButton(
-                    onPressed: () {
-                      scancontroller.toggleTorchMode();
-                    },
-                    icon: Icon(
-                      Icons.flash_on,
-                      color: white,
-                    )),
                 IconButton(
                     onPressed: () {
                       Navigator.push(
@@ -140,13 +130,16 @@ class _ScanFinalState extends State<ScanFinal> {
               padding: const EdgeInsets.all(8.0),
               child: Builder(builder: (context) {
                 return ProductCard(
-                    name: name, quantity: quantity, price: price, barcode: barcode,);
+                  name: name,
+                  quantity: quantity,
+                  price: price,
+                  barcode: barcode,
+                );
               }),
             ),
           ],
         ),
       ),
-
     );
   }
 
