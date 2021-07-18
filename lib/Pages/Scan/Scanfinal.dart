@@ -7,6 +7,7 @@ import 'package:groceries/Assets/Themes/Fonts.dart';
 import 'package:groceries/Models/Cart.dart';
 import 'package:groceries/Pages/Home.dart';
 import 'package:groceries/Pages/Scan/CartView.dart';
+import 'package:groceries/Widgets/Cartdrawer.dart';
 import 'package:groceries/Widgets/Productcard.dart';
 import 'package:provider/provider.dart';
 import 'package:scan/scan.dart';
@@ -55,6 +56,7 @@ class _ScanFinalState extends State<ScanFinal> {
     }
 
     return Scaffold(
+      endDrawer: CartDrawer() ,
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: greenm,
@@ -115,10 +117,7 @@ class _ScanFinalState extends State<ScanFinal> {
                 ),
                 IconButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Cartview()),
-                      );
+                      Scaffold.of(context).openEndDrawer();
                     },
                     icon: Icon(
                       Icons.shopping_cart,

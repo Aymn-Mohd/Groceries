@@ -21,16 +21,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String name = '';
   String email = '';
-  List<Orderlist> Orders = [
-    Orderlist('Lulu', '20.2.21', 60),
-    Orderlist('Lulu', '20.1.21', 50),
-    Orderlist('Max', '20.3.21', 50),
-    Orderlist('Carrefour', '18.2.21', 50),
-    Orderlist('Max', '20.3.21', 50),
-    Orderlist('Carrefour', '18.2.21', 50),
-    Orderlist('Max', '20.3.21', 50),
-    Orderlist('Carrefour', '18.2.21', 50)
-  ];
+  List<Orderlist> Orders = [];
 
   @override
   Widget build(BuildContext context) {
@@ -178,23 +169,31 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     ),
-                    child: ListView.separated(
-                        shrinkWrap: true,
-                        separatorBuilder: (context, index) => const SizedBox(
-                              height: 8,
-                            ),
-                        itemCount: Orders.length,
-                        itemBuilder: (context, index) {
-                          if (Orders.length < 0) {
-                            return Text(
-                              'You have made no Orders',
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.black),
-                            );
-                          } else {
-                            return ordercard(context, index);
-                          }
-                        }),
+                    child: Builder(
+                      builder: (context){
+                        if (Orders.length <= 0) {
+                          return Text('You have No Orders',style: style17b,);
+                        }else{
+                          return ListView.separated(
+                              shrinkWrap: true,
+                              separatorBuilder: (context, index) => const SizedBox(
+                                height: 8,
+                              ),
+                              itemCount: Orders.length,
+                              itemBuilder: (context, index) {
+                                if (Orders.length < 0) {
+                                  return Text(
+                                    'You have made no Orders',
+                                    style:
+                                    TextStyle(fontSize: 15, color: Colors.black),
+                                  );
+                                } else {
+                                  return ordercard(context, index);
+                                }
+                              });
+                        }
+                      },
+                    )
                   ),
                 ),
                 SizedBox(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groceries/Assets/Themes/Colorthemes.dart';
 import 'package:groceries/Assets/Themes/Fonts.dart';
 import 'package:groceries/Services/AuthServ/Auth.dart';
@@ -75,10 +76,16 @@ class _LoginState extends State<Login> {
           final provider = Provider.of<GSignIn>(context, listen: false);
           provider.gLogin();
         },
-        child: Text("Google Login",
-            textAlign: TextAlign.center,
-            style: style20.copyWith(
-                color: Colors.white, fontWeight: FontWeight.bold)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Icon(FontAwesomeIcons.google),
+            Text("Google Login",
+                textAlign: TextAlign.center,
+                style: style20.copyWith(
+                    color: Colors.white, fontWeight: FontWeight.bold)),
+          ],
+        ),
       ),
     );
 
@@ -88,7 +95,7 @@ class _LoginState extends State<Login> {
         child: SafeArea(
           child: Center(
             child: Container(
-              color: Colors.white,
+
               child: Form(
                 child: Padding(
                   padding: const EdgeInsets.all(36.0),

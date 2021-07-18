@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
         create: (context) => GSignIn(),
         child: MultiProvider(
-          providers: [ ChangeNotifierProvider.value(value: Cart())],
+          providers: [ ChangeNotifierProvider.value(value: Cart()),
+            ChangeNotifierProvider.value(value: totalcost())],
             child: MaterialApp(
           home: Sauth(),
         )));

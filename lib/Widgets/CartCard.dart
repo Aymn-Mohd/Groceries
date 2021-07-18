@@ -10,56 +10,73 @@ class CartCard extends StatelessWidget {
   String name;
   double price;
   int quantity;
-  CartCard(this.barcode, this.name, this.price, this.quantity);
+  double totalprice;
+  final Function additem;
+  final Function removeitem;
+  CartCard(this.barcode, this.name, this.price, this.quantity,this.totalprice, this.additem,this.removeitem);
 
   @override
   Widget build(BuildContext context) {
-    double totalprice = price * quantity;
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.0),
-        color: Colors.white,
+    final sum = Provider.of<totalcost>(context);
+
+    return Dismissible(
+      key: ValueKey(barcode),
+      direction: DismissDirection.endToStart,
+      background: Container(
+        color: Colors.red,
+
       ),
-      height: 80,
-      padding: EdgeInsets.all(10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            children: [
-              Text(
-                name,
-                style: style17b,
-              )
-            ],
-          ),
-          Column(
-            children: [
-              Builder(builder: (context) {
-                if (quantity == 1) {
-                  return quantitycounter(context);
-                } else {
-                  return quantitycounter1(context);
-                }
-              })
-            ],
-          ),
-          Column(
-            children: [
-              Text(
-                "Total Price: $totalprice Dhs",
-                style: style12b,
-              )
-            ],
-          ),
-        ],
+      onDismissed: (direction){
+        Provider.of<Cart>(context, listen: false).removeitem(barcode);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.0),
+          color: Colors.white,
+        ),
+        height: 80,
+        padding: EdgeInsets.all(10),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: [
+                Text(
+                  name,
+                  style: style17b,
+                )
+              ],
+            ),
+            Column(
+              children: [
+                Builder(builder: (context) {
+                  if (quantity == 1) {
+                    return quantitycounter(context);
+                  } else {
+                    return quantitycounter1(context);
+                  }
+                })
+              ],
+            ),
+            Column(
+              children: [
+                Text(
+                  "Price: $totalprice Dhs",
+                  style: style12b,
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget quantitycounter1(context) {
-    final cart = Provider.of<Cart>(context);
+    final cart = Provider.of<Cart>(context,listen: false);
+    final sum = Provider.of<totalcost>(context);
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(32.0),
@@ -75,6 +92,7 @@ class CartCard extends StatelessWidget {
                     cart.removesingitem(
                       barcode,
                     );
+                    removeitem(context);
                   },
                   icon: Icon(FontAwesomeIcons.minusCircle, size: 22))
             ],
@@ -89,6 +107,7 @@ class CartCard extends StatelessWidget {
               IconButton(
                   onPressed: () {
                     cart.addItem(barcode, name, price);
+                    additem(context);
                   },
                   icon: Icon(Icons.add_circle_outline_outlined, size: 22))
             ],
@@ -107,18 +126,7 @@ class CartCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              IconButton(
-                  onPressed: () {
-                    cart.removeitem(barcode);
-                    print('trash');
-                    cart.removeitem(barcode);
-                  },
-                  icon: Icon(FontAwesomeIcons.trash, size: 22))
-            ],
-          ),
+          
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [Text("$quantity")],

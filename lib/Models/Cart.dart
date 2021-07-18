@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class productinfo {
   String barcode;
   String name;
   double price;
   int quantity;
-  productinfo(this.barcode, this.name, this.price, this.quantity);
+  double totalprice;
+  productinfo(
+      this.barcode, this.name, this.price, this.quantity, this.totalprice);
 }
 
 class Cart with ChangeNotifier {
@@ -18,6 +21,8 @@ class Cart with ChangeNotifier {
     return _items.length;
   }
 
+  final double sum = 0;
+
   void addItem(
     String barcode,
     String name,
@@ -26,10 +31,15 @@ class Cart with ChangeNotifier {
     if (_items.containsKey(barcode)) {
       _items.update(
           barcode,
-          (existitm) => productinfo(existitm.barcode, existitm.name,
-              existitm.price, existitm.quantity + 1));
+          (existitm) => productinfo(
+              existitm.barcode,
+              existitm.name,
+              existitm.price,
+              existitm.quantity + 1,
+              existitm.price * (existitm.quantity + 1)));
     } else {
-      _items.putIfAbsent(barcode, () => productinfo(barcode, name, price, 1));
+      _items.putIfAbsent(
+          barcode, () => productinfo(barcode, name, price, 1, price * 1));
     }
     notifyListeners();
   }
@@ -46,8 +56,8 @@ class Cart with ChangeNotifier {
     if (_items[barcode]!.quantity > 1) {
       _items.update(
           barcode,
-          (existitm) => productinfo(
-              barcode, existitm.name, existitm.price, existitm.quantity - 1));
+          (existitm) => productinfo(barcode, existitm.name, existitm.price,
+              existitm.quantity - 1, existitm.price * (existitm.quantity - 1)));
     }
     notifyListeners();
   }
@@ -56,4 +66,8 @@ class Cart with ChangeNotifier {
     _items = {};
     notifyListeners();
   }
+}
+
+class totalcost with ChangeNotifier {
+
 }
