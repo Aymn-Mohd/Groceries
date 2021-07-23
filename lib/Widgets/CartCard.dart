@@ -11,9 +11,8 @@ class CartCard extends StatelessWidget {
   double price;
   int quantity;
   double totalprice;
-  final Function additem;
-  final Function removeitem;
-  CartCard(this.barcode, this.name, this.price, this.quantity,this.totalprice, this.additem,this.removeitem);
+
+  CartCard(this.barcode, this.name, this.price, this.quantity,this.totalprice, );
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +91,7 @@ class CartCard extends StatelessWidget {
                     cart.removesingitem(
                       barcode,
                     );
-                    removeitem(context);
+
                   },
                   icon: Icon(FontAwesomeIcons.minusCircle, size: 22))
             ],
@@ -107,7 +106,7 @@ class CartCard extends StatelessWidget {
               IconButton(
                   onPressed: () {
                     cart.addItem(barcode, name, price);
-                    additem(context);
+
                   },
                   icon: Icon(Icons.add_circle_outline_outlined, size: 22))
             ],

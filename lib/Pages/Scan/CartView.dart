@@ -5,9 +5,8 @@ import 'package:groceries/Widgets/CartCard.dart';
 import 'package:provider/provider.dart';
 
 class Cartview extends StatelessWidget {
-  const Cartview({Key? key, required this.additem, required this.removeitem}) : super(key: key);
-  final Function additem;
-  final Function removeitem;
+  const Cartview({Key? key, }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
@@ -26,8 +25,7 @@ class Cartview extends StatelessWidget {
                   cart.items.values.toList()[index].price,
                   cart.items.values.toList()[index].quantity,
                 cart.items.values.toList()[index].totalprice,
-                additem,
-                removeitem
+
               );
             }),
       ),

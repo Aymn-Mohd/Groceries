@@ -19,29 +19,11 @@ class _CartDrawerState extends State<CartDrawer> {
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
     double sum = 0;
-    void additem(context){
-      final cart = Provider.of<Cart>(context);
-      cart.items.values.forEach((element) {
-        setState(() {
-          sum = sum + element.totalprice;
-        });
+    cart.items.values.forEach((element) {
+      setState(() {
+        sum = element.totalprice + element.totalprice ;
       });
-    }
-
-     removeitem(context) {
-      final cart = Provider.of<Cart>(context);
-      cart.items.values.forEach((element) {
-        setState(() {
-          sum = sum - element.totalprice;
-        });
-      });
-    }
-
-    // cart.items.values.forEach((element) {
-    //   setState(() {
-    //     sum = element.totalprice + element.totalprice ;
-    //   });
-    // });
+    });
     return Drawer(
       child: Container(
 
@@ -49,7 +31,7 @@ class _CartDrawerState extends State<CartDrawer> {
         child: Column(
           children: [
             Expanded(
-              child: Cartview(additem: additem(context), removeitem: removeitem(context),),
+              child: Cartview(),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
